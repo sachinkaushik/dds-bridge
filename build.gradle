@@ -6,8 +6,14 @@ plugins {
 group = 'dds.bridge'
 version = '1.0'
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
 application {
-    mainClass = 'org.intel.NumericSubscriber'
+    mainClass = 'org.intel.MdPnpEventConsumer'
     applicationDefaultJvmArgs = [
         "-Djava.library.path=${projectDir}/native/libs/linux"
     ]
@@ -18,11 +24,6 @@ run {
     environment 'RTI_LICENSE_FILE', "${projectDir}/libs/OpenICE_license.dat"
 }
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-}
 
 repositories {
     mavenCentral()

@@ -10,7 +10,7 @@ import ice.Numeric;
 import ice.NumericDataReader;
 import ice.NumericSeq;
 
-public class NumericSubscriber {
+public class MdPnpEventConsumer {
 
     public static void main(String[] args) throws InterruptedException {
 
