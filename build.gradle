@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'dds.bridge'
+version = '1.0'
+
+application {
+    mainClass = 'org.intel.NumericSubscriber'
+    applicationDefaultJvmArgs = [
+        "-Djava.library.path=${projectDir}/native/libs/linux"
+    ]
+}
+
+run {
+    environment 'LD_LIBRARY_PATH', "${projectDir}/native/libs/linux"
+    environment 'RTI_LICENSE_FILE', "${projectDir}/libs/OpenICE_license.dat"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation fileTree(
+        dir: System.getenv("RTI_DDS_HOME") + "/lib/java",
+        include: ["*.jar"]
+    )
+
+    // MDPnP generated ICE types
+    implementation fileTree(
+        dir: "libs",
+        include: ["*.jar"]
+    )
+	
+	// MDPnP ICE generated types
+    implementation files("libs/ice-types.jar")
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.0'
+}
+
