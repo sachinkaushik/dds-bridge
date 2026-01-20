@@ -100,7 +100,8 @@ public class MdPnpEventConsumer {
                         v.timestamp = System.currentTimeMillis();
                         System.out.println("🛑 Vital Reading: " + v.toString());
 
-                       //RestPublisher.publish(v);
+                        // push to gRPC
+                        //GrpcPublisher.publish(v);
                     }
                 }
             } finally {
